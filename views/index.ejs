@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAPI.C Data Hub</title>
     <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css">
+    <link rel="icon" type="image/png" href="/images/logo.png" style="border-radius:50%;">
 </head>
 
-<body>
+<body data-scroll-container>
     <div class="lodingAn">
         <div class="preloader" id="preloader">
             <div class="loading-circle"></div>
@@ -17,21 +19,18 @@
             </div>
         </div>
     </div>
-
     <main class="content" id="main-content">
         <header>
-            <h1 class="main-title">Welcome to Our Website!</h1>
-            <p class="main-subtitle">The preloader transition worked successfully.</p>
+            <h1 class="main-title">Welcome to MAPI!</h1>
+            <p class="main-subtitle">Computer Science And Technology</p>
         </header>
-        
+
         <div class="cta-section">
-            <p>This section was hidden until the loading animation finished.</p>
-            <button>Explore Now</button>
+            <img src="/images/logo.png" alt="">
         </div>
     </main>
-    </div>
     <header class="main-header">
-        <a href="/" class="logo">MAPI.C Data Hub</a>
+        <a href="/" class="logo">MAPI.C</a>
 
         <button class="nav-toggler" id="nav-toggler" aria-expanded="false" aria-controls="main-nav">
             <span class="bar"></span>
@@ -41,23 +40,58 @@
 
         <nav class="main-nav" id="main-nav">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="/signin">Sign In</a></li>
-                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/data">Data</a></li>
+                <li><a href="/notic">Notice</a></li>
+                <% if (typeof token !=='undefined' && token) { %>
+                    <li>
+                        <a href="/profile" title="Profile">
+                            <img src="/images/profile-icon.png" alt="Profile"
+                                style="width:24px; height:24px; border-radius:50%;">
+                        </a>
+                    </li>
+                    <% } else { %>
+                        <li><a href="/signin">Sign In</a></li>
+                        <li><a href="/signup">Sign Up</a></li>
+                        <% } %>
             </ul>
         </nav>
     </header>
-    <div class="page1">
-        
-    </div>
-    
+    <section>
+        <main>
+            <div class="page1" id="page1">
+                <video class="video-dark" id="video-dark" src="/videos/college video.mp4" muted loop autoplay></video>
+                <div class="video-light-overlay" id="video-light-overlay"></div>
+                <div class="dark"></div>
+            </div>
+            <div class="page2" data-scroll data-scroll-speed="0.5">
+                <h1>Magura Playtacnic Institude</h1>
+                <a href="">
+                    <div class="card">
+                        <a href="">See More >></a>
+                        <div class="images">
+                            <img src="/images/fullcollege.jpg" alt="">
+                            <img src="/images/getText.jpg" alt="">
+                            <img src="/images/entry.jpg" alt="">
+                            <img src="/images/campuss.jpg" alt="">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            </div>
+        </main>
+    </section>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+        integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script src="/javascripts/index.js"></script>
 </body>
 

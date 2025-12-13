@@ -8,6 +8,11 @@ html,
 body {
   height: 100%;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 :root {
@@ -22,8 +27,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 7px 30px;
+  width: 100%;
+  z-index: 101;
 }
+
 
 .logo {
   color: var(--light-color);
@@ -31,12 +39,67 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   user-select: none;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.ta-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.ta-section img {
+  width: 20%;
+  text-align: center;
+}
+
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .main-nav ul {
   list-style: none;
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
   user-select: none;
+  z-index: 100;
+  width: 100%;
+  max-width: 600px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 120px;
+  z-index: 100;
+  border-radius: 10px;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background: #f0f0f0;
 }
 
 .main-nav ul li a {
@@ -145,6 +208,7 @@ body {
   color: var(--brand-color);
   opacity: 0.5;
 }
+
 .content {
   opacity: 0;
   padding: 50px;
@@ -188,4 +252,117 @@ button {
 
 button:hover {
   background-color: #27499d;
+}
+.page1 {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.page1 video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video-dark {
+  filter: brightness(0.4) contrast(1.1);
+  transition: filter 0.3s ease-out;
+  cursor: pointer;
+}
+
+.video-light-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 200px at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  z-index: 1;
+}
+
+.page1:hover .video-light-overlay {
+  opacity: 1;
+}
+
+.page1:hover .video-dark {
+  filter: brightness(0.5) contrast(1.08);
+  transition: filter 0.3s ease-out;
+}
+
+
+.page2 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+.dark{
+  width: 100%;
+  height: 10rem;
+  position: absolute;
+  transform: translateY(100%);
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(black, white);
+}
+.page2 .card {
+  width: 90%;
+  height: 10rem;
+  padding: 40px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  border-radius: 10px 40px 10px 40px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.page2 .card a {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  font-size: 10px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.page2 .card .images {
+  width: 90%;
+  height: 9rem;
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.images img {
+  width: 10rem;
+  height: 6rem;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1000px;
 }

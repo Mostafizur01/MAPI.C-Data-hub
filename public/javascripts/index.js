@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navToggler.addEventListener('click', () => {
         navToggler.classList.toggle('open');
-
         mainNav.classList.toggle('open');
-
         const isExpanded = navToggler.classList.contains('open');
         navToggler.setAttribute('aria-expanded', isExpanded);
     });
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const preloader = document.getElementById('preloader');
     const loadingCircle = document.querySelector('.loading-circle');
@@ -36,31 +33,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tl = gsap.timeline({
         onComplete: () => {
-            preloader.style.display = 'none';
-            document.body.style.height = 'auto';
+            gsap.set(preloader, { display: 'none' });
+            gsap.set(document.body, { height: 'auto' });
+
             if (page1) {
-                page1.style.display = 'block';
-                page1.style.height = '100vh';
-                page1.style.marginTop = nav.offsetHeight + 'px';
-                page1.style.zIndex = '2';
+                gsap.set(page1, {
+                    display: 'block',
+                    height: '100vh',
+                    marginTop: '0',
+                    zIndex: 2
+                });
             }
+
             if (mainContent) {
-                mainContent.style.position = 'absolute';
-                mainContent.style.top = '0';
-                mainContent.style.left = '0';
-                mainContent.style.height = '0';
-                mainContent.style.width = '0';
-                mainContent.style.opacity = '0';
-                mainContent.style.overflow = 'hidden';
-                mainContent.style.zIndex = '1';
+                gsap.set(mainContent, {
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    height: '0',
+                    width: '0',
+                    opacity: '0',
+                    overflow: 'hidden',
+                    zIndex: 1
+                });
             }
+
             if (nav && page1) {
-                nav.style.position = 'fixed';
-                nav.style.top = '0';
-                nav.style.left = '0';
-                nav.style.width = '100%';
-                nav.style.zIndex = '10';
+                gsap.set(nav, { position: 'relative' });
             }
+
             window.scrollTo(0, 0);
 
             gsap.from("#main-nav li, .main-header a", {
@@ -69,10 +70,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 0,
                 stagger: 0.06,
                 duration: 1,
-                ease: "power2.out"
+                ease: "power2.out",
+                onComplete: () => {
+                    // Initialize Locomotive Scroll after animations complete
+                    initLocomotiveScroll();
+                }
             });
         }
     });
+
+    // Initialize Locomotive Scroll
+    let scroll;
+    const initLocomotiveScroll = () => {
+        setTimeout(() => {
+            scroll = new LocomotiveScroll({
+                el: document.querySelector('[data-scroll-container]'),
+                smooth: true,
+                smoothMobile: false,
+                multiplier: 1,
+                class: 'is-revealed'
+            });
+
+            // Update scroll on resize
+            window.addEventListener('resize', () => {
+                if (scroll) {
+                    scroll.update();
+                }
+            });
+        }, 200);
+    };
+
     let count = 0;
     const interval = setInterval(() => {
         if (count < 100) {
@@ -107,13 +134,106 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tl.to('.lodingAn', {
         y: "-100%",
-        display: "none"
+        display: "none",
+        ease: "power2.inOut"
     });
 
     tl.from('.main-header a, button, nav', {
         y: -100,
         scale: 0,
         opacity: 0,
-        stagger: 0.05
+        stagger: 0.05,
+        duration: 0.8,
+        ease: "back.out(1.7)"
     });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const page1 = document.getElementById('page1');
+    const video = document.getElementById('video-dark');
+    const overlay = document.getElementById('video-light-overlay');
+
+    if (page1 && video && overlay) {
+        let isHovering = false;
+        const mousePos = { x: 50, y: 50 };
+        const videoBrightness = { value: 0.4 };
+
+        gsap.set(overlay, {
+            opacity: 0,
+            background: 'radial-gradient(circle 200px at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.6) 100%)'
+        });
+
+        page1.addEventListener('mouseenter', () => {
+            isHovering = true;
+            gsap.to(overlay, {
+                opacity: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+            gsap.to(videoBrightness, {
+                value: 0.5,
+                duration: 0.3,
+                ease: "power2.out",
+                onUpdate: function() {
+                    video.style.filter = `brightness(${videoBrightness.value}) contrast(1.08)`;
+                }
+            });
+        });
+
+        page1.addEventListener('mouseleave', () => {
+            isHovering = false;
+            gsap.to(overlay, {
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+            gsap.to(videoBrightness, {
+                value: 0.4,
+                duration: 0.3,
+                ease: "power2.out",
+                onUpdate: function() {
+                    video.style.filter = `brightness(${videoBrightness.value}) contrast(1.1)`;
+                }
+            });
+        });
+
+        page1.addEventListener('mousemove', (e) => {
+            if (!isHovering) return;
+
+            const rect = page1.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const percentX = (x / rect.width) * 100;
+            const percentY = (y / rect.height) * 100;
+
+            gsap.to(mousePos, {
+                x: percentX,
+                y: percentY,
+                duration: 0.3,
+                ease: "power2.out",
+                onUpdate: function() {
+                    const gradientSize = 300;
+                    overlay.style.background = `radial-gradient(circle ${gradientSize}px at ${mousePos.x}% ${mousePos.y}%, transparent 0%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.7) 100%)`;
+                }
+            });
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+            const maxDistance = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2));
+            const brightnessFactor = 1 - (distance / maxDistance) * 0.4;
+            const newBrightness = 0.4 + (brightnessFactor * 0.4);
+
+            gsap.to(videoBrightness, {
+                value: newBrightness,
+                duration: 0.2,
+                ease: "power2.out",
+                onUpdate: function() {
+                    video.style.filter = `brightness(${videoBrightness.value}) contrast(1.1)`;
+                }
+            });
+        });
+    }
 });
