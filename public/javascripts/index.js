@@ -8,17 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const isExpanded = navToggler.classList.contains('open');
         navToggler.setAttribute('aria-expanded', isExpanded);
     });
-
-    const navLinks = mainNav.querySelectorAll('a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768 && mainNav.classList.contains('open')) {
-                navToggler.classList.remove('open');
-                mainNav.classList.remove('open');
-                navToggler.setAttribute('aria-expanded', 'false');
-            }
-        });
-    });
 });
 
 
@@ -72,14 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 1,
                 ease: "power2.out",
                 onComplete: () => {
-                    // Initialize Locomotive Scroll after animations complete
                     initLocomotiveScroll();
                 }
             });
         }
     });
 
-    // Initialize Locomotive Scroll
     let scroll;
     const initLocomotiveScroll = () => {
         setTimeout(() => {
@@ -91,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 class: 'is-revealed'
             });
 
-            // Update scroll on resize
             window.addEventListener('resize', () => {
                 if (scroll) {
                     scroll.update();
@@ -236,4 +222,130 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach((item) => {
+        const triggerLink = item.querySelector('a');
+        const dropdown = item.querySelector('.academincs');
+
+        if (!triggerLink || !dropdown) return;
+
+        // Desktop: hover behavior
+        const setupDesktopBehavior = () => {
+            // set initial hidden state for desktop
+            gsap.set(dropdown, {
+                opacity: 0,
+                y: -20,
+                display: 'none'
+            });
+
+            item.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 768) {
+                    dropdown.style.display = 'block';
+                    gsap.to(dropdown, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.25,
+                        ease: 'power2.out'
+                    });
+
+                    const links = dropdown.querySelectorAll('li a');
+                    gsap.from(links, {
+                        opacity: 0,
+                        x: -15,
+                        stagger: 0.04,
+                        duration: 0.25,
+                        ease: 'power2.out',
+                        delay: 0.05
+                    });
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) {
+                    gsap.to(dropdown, {
+                        opacity: 0,
+                        y: -10,
+                        duration: 0.2,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            dropdown.style.display = 'none';
+                        }
+                    });
+                }
+            });
+
+            triggerLink.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 768) {
+                    gsap.to(triggerLink, {
+                        scale: 1.05,
+                        duration: 0.15,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+
+            triggerLink.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) {
+                    gsap.to(triggerLink, {
+                        scale: 1,
+                        duration: 0.15,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        };
+
+        
+        const setupMobileBehavior = () => {
+            triggerLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isActive = item.classList.contains('active');
+                    
+                
+                    dropdownItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherDropdown = otherItem.querySelector('.academincs');
+                            if (otherDropdown) {
+                                otherDropdown.style.display = 'none';
+                            }
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    if (isActive) {
+                        item.classList.remove('active');
+                        dropdown.style.display = 'none';
+                    } else {
+                        item.classList.add('active');
+                        dropdown.style.display = 'block';
+                    }
+                }
+            });
+        };
+
+        // Setup both behaviors
+        setupDesktopBehavior();
+        setupMobileBehavior();
+    });
+
+    // Handle window resize - reset dropdowns when switching between mobile/desktop
+    window.addEventListener('resize', () => {
+        dropdownItems.forEach(item => {
+            if (window.innerWidth > 768) {
+                item.classList.remove('active');
+                const dropdown = item.querySelector('.academincs');
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
+            }
+        });
+    });
 });

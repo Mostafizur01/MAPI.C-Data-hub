@@ -30,20 +30,84 @@
         </div>
     </main>
     <header class="main-header">
-        <a href="/" class="logo">MAPI.C</a>
+        <a href="/" class="logo header-logo">MAPI.C</a>
 
         <button class="nav-toggler" id="nav-toggler" aria-expanded="false" aria-controls="main-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
-
+        
         <nav class="main-nav" id="main-nav">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/data">Data</a></li>
-                <li><a href="/notic">Notice</a></li>
+                <!-- Academics -->
+                <li class="dropdown-item">
+                    <a class="Academincs" href="/">ACADEMICS <span class="dropdown-icon">▼</span></a>
+                    <div class="academincs">
+                        <ul>
+                            <li><a href="#">Section One</a></li>
+                            <li><a href="#">Section Two</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Research -->
+                <li class="dropdown-item">
+                    <a href="/about">RESEARCH <span class="dropdown-icon">▼</span></a>
+                    <div class="academincs">
+                        <ul>
+                            <li><a href="#">Overview</a></li>
+                            <li><a href="#">Projects</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Admissions -->
+                <li class="dropdown-item">
+                    <a href="/data">ADMISSIONS <span class="dropdown-icon">▼</span></a>
+                    <div class="academincs">
+                        <ul>
+                            <li><a href="#">Undergraduate</a></li>
+                            <li><a href="#">Graduate</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- SNU Now -->
+                <li class="dropdown-item">
+                    <a href="/notic">SNU NOW <span class="dropdown-icon">▼</span></a>
+                    <div class="academincs">
+                        <ul>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Events</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Center logo (desktop only) -->
+                <a href="/" class="logo nav-logo">MAPI.C</a>
+
+                <!-- Campus Life -->
+                <li class="dropdown-item">
+                    <a href="##">CAMPUS LIFE <span class="dropdown-icon">▼</span></a>
+                    <div class="academincs">
+                        <ul>
+                            <li><a href="#">Clubs</a></li>
+                            <li><a href="#">Housing</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- About -->
+                <li class="dropdown-item">
+                    <a href="##">ABOUT <span class="dropdown-icon">▼</span></a>
+                    <div class="academincs">
+                        <ul>
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </li>
                 <% if (typeof token !=='undefined' && token) { %>
                     <li>
                         <a href="/profile" title="Profile">
@@ -52,8 +116,8 @@
                         </a>
                     </li>
                     <% } else { %>
-                        <li><a href="/signin">Sign In</a></li>
-                        <li><a href="/signup">Sign Up</a></li>
+                        <li><a href="/signin">SIGN IN</a></li>
+                        <li><a href="/signup">SIGN UP</a></li>
                         <% } %>
             </ul>
         </nav>
