@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css">
     <link rel="icon" type="image/png" href="/images/logo.png" style="border-radius:50%;">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
 <body data-scroll-container>
@@ -37,7 +38,7 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
-        
+
         <nav class="main-nav" id="main-nav">
             <ul>
                 <!-- Academics -->
@@ -125,11 +126,43 @@
     <section>
         <main>
             <div class="page1" id="page1">
-                <video class="video-dark" id="video-dark" src="/videos/college video.mp4" muted loop autoplay></video>
+                <video class="video-dark" id="video-dark" src="/videos/college video.mp4" playsinline preload="auto"
+                    muted loop autoplay></video>
                 <div class="video-light-overlay" id="video-light-overlay"></div>
                 <div class="dark"></div>
             </div>
-            <div class="page2" data-scroll data-scroll-speed="0.5">
+            <div class="page2">
+                <div class="cards">
+                    <div class="card1">
+                        <img src="/images/entry.jpg" alt="">
+                        <h3>this is our main door</h3>
+                        <p>this is our main door</p>
+                        <i class="ri-arrow-right-fill" class="cardIcon1"></i>
+                    </div>
+                    <div class="card1">
+                        <img src="/images\frontOfCollege.jpg" alt="">
+                        <h3>this is our college front site</h3>
+                        <p>this is our college front site</p>
+                        <i class="ri-arrow-right-fill" class="cardIcon2"></i>
+                    </div>
+                    <div class="card1">
+                        <img src="/images/fullcollege.jpg" alt="">
+                        <h3>this is our college full view</h3>
+                        <p>this is our college full view</p>
+                        <i class="ri-arrow-right-fill" class="cardIcon3"></i>
+                    </div>
+                    <div class="card1 cardLogo">
+                        <img src="/images\logo.png" alt="">
+                    </div>
+                    <div class="card1">
+                        <img src="/images\frontOfCollege.jpg" alt="">
+                        <h3>this is our college front site</h3>
+                        <p>this is our college front site</p>
+                        <i class="ri-arrow-right-fill" class="cardIcon4"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="page3" data-scroll data-scroll-speed="0.5">
                 <h1>Magura Playtacnic Institude</h1>
                 <a href="">
                     <div class="card">
@@ -143,7 +176,39 @@
                     </div>
                 </a>
             </div>
+            <div class="page4">
+                <div class="slider-container">
+                    <div class="filter"></div>
+                    <div class="bg-wrapper">
+                        <div class="bg-slide active" style="background-image: url('/images/frontOfCollege.jpg')"></div>
+                        <div class="bg-slide" style="background-image: url('/images/campuss.jpg')"></div>
+                        <div class="bg-slide" style="background-image: url('/images/entry.jpg')"></div>
+                        <div class="bg-slide" style="background-image: url('/images/consol.log1.jpg')"></div>
+                    </div>
+                    <div class="fg-container">
+                        <div class="nav-icon prev" id="prevBtn"><i class="ri-arrow-left-s-line"></i></div>
+                        <div class="nav-icon next" id="nextBtn"><i class="ri-arrow-right-s-line"></i></div>
+
+                        <div class="fg-wrapper">
+                            <div class="fg-slide active">
+                                <img src="/images/frontOfCollege.jpg" alt="Slide 1">
+                            </div>
+                            <div class="fg-slide">
+                                <img src="/images/campuss.jpg" alt="Slide 2">
+                            </div>
+                            <div class="fg-slide">
+                                <img src="/images/entry.jpg" alt="Slide 3">
+                            </div>
+                            <div class="fg-slide">
+                                <img src="/images/consol.log1.jpg" alt="Slide 3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <footer>
+
+            </footer>
         </main>
     </section>
 

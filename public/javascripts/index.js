@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 value: 0.5,
                 duration: 0.3,
                 ease: "power2.out",
-                onUpdate: function() {
+                onUpdate: function () {
                     video.style.filter = `brightness(${videoBrightness.value}) contrast(1.08)`;
                 }
             });
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 value: 0.4,
                 duration: 0.3,
                 ease: "power2.out",
-                onUpdate: function() {
+                onUpdate: function () {
                     video.style.filter = `brightness(${videoBrightness.value}) contrast(1.1)`;
                 }
             });
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: percentY,
                 duration: 0.3,
                 ease: "power2.out",
-                onUpdate: function() {
+                onUpdate: function () {
                     const gradientSize = 300;
                     overlay.style.background = `radial-gradient(circle ${gradientSize}px at ${mousePos.x}% ${mousePos.y}%, transparent 0%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.7) 100%)`;
                 }
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 value: newBrightness,
                 duration: 0.2,
                 ease: "power2.out",
-                onUpdate: function() {
+                onUpdate: function () {
                     video.style.filter = `brightness(${videoBrightness.value}) contrast(1.1)`;
                 }
             });
@@ -233,9 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!triggerLink || !dropdown) return;
 
-        // Desktop: hover behavior
         const setupDesktopBehavior = () => {
-            // set initial hidden state for desktop
             gsap.set(dropdown, {
                 opacity: 0,
                 y: -20,
@@ -299,16 +297,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        
+
         const setupMobileBehavior = () => {
             triggerLink.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     const isActive = item.classList.contains('active');
-                    
-                
+
+
                     dropdownItems.forEach(otherItem => {
                         if (otherItem !== item) {
                             otherItem.classList.remove('active');
@@ -318,8 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     });
-
-                    // Toggle current dropdown
                     if (isActive) {
                         item.classList.remove('active');
                         dropdown.style.display = 'none';
@@ -330,13 +326,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         };
-
-        // Setup both behaviors
         setupDesktopBehavior();
         setupMobileBehavior();
     });
 
-    // Handle window resize - reset dropdowns when switching between mobile/desktop
     window.addEventListener('resize', () => {
         dropdownItems.forEach(item => {
             if (window.innerWidth > 768) {
@@ -348,4 +341,101 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+const items = document.querySelectorAll('.card1')
+items.forEach((item) => {
+
+    item.addEventListener('mouseenter', () => {
+        gsap.to(item, {
+            scale: 1.05,            
+            boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+            duration: 0.4,
+            ease: "power2.out"
+        });
+     
+        gsap.to('.bg-wrapper', { filter: "brightness(0.5)", duration: 0.4 });
+    });
+
+    item.addEventListener('mouseleave', () => {
+        gsap.to(item, {
+            scale: 1,               
+            boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
+            duration: 0.4,
+            ease: "power2.out"
+        });
+        
+        gsap.to('.bg-wrapper', { filter: "brightness(1)", duration: 0.4 });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    let currentIndex = 0;
+    const bgSlides = document.querySelectorAll('.bg-slide');
+    const fgSlides = document.querySelectorAll('.fg-slide');
+    const totalSlides = bgSlides.length;
+    let isAnimating = false;
+
+    function moveSlide(direction) {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const nextIndex = direction === 'next' 
+            ? (currentIndex + 1) % totalSlides 
+            : (currentIndex - 1 + totalSlides) % totalSlides;
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                isAnimating = false;
+                currentIndex = nextIndex;
+            }
+        });
+
+        
+        tl.to(bgSlides[currentIndex], { opacity: 0, duration: 1.2, ease: "power2.inOut" }, 0);
+        tl.to(bgSlides[nextIndex], { opacity: 1, duration: 1.2, ease: "power2.inOut" }, 0);
+
+        
+        tl.to(fgSlides[currentIndex], { 
+            opacity: 0, 
+            x: direction === 'next' ? -60 : 60, 
+            rotate: direction === 'next' ? -5 : 5,
+            duration: 0.8, 
+            ease: "power2.in" 
+        }, 0);
+
+        tl.fromTo(fgSlides[nextIndex], 
+            { opacity: 0, x: direction === 'next' ? 60 : -60, rotate: direction === 'next' ? 5 : -5 }, 
+            { opacity: 1, x: 0, rotate: 0, duration: 0.8, ease: "power2.out" }, 
+            0.4
+        );
+    }
+
+    
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        moveSlide('next');
+        resetTimer();
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        moveSlide('prev');
+        resetTimer();
+    });
+
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "ArrowRight") {
+            moveSlide('next');
+            resetTimer();
+        } else if (e.key === "ArrowLeft") {
+            moveSlide('prev');
+            resetTimer();
+        }
+    });
+
+    let autoPlay = setInterval(() => moveSlide('next'), 3000);
+
+    function resetTimer() {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(() => moveSlide('next'), 3000);
+    }
 });
