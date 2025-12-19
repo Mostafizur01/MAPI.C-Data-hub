@@ -474,6 +474,14 @@ button:hover {
   overflow: hidden;
 }
 
+.page2 h1 {
+  z-index: 1000;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  margin-top: 10px;
+  -webkit-text-stroke-color: black;
+}
+
 .page2 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -492,7 +500,8 @@ button:hover {
   position: relative;
   cursor: pointer;
 }
-.cards .card1 i{
+
+.cards .card1 i {
   position: absolute;
   right: 10px;
   bottom: 10px;
@@ -629,6 +638,7 @@ button:hover {
   height: 100vh;
   position: relative;
 }
+
 .filter {
   position: absolute;
   width: 100%;
@@ -734,8 +744,94 @@ button:hover {
 .next {
   right: -60px;
 }
-footer{
+
+footer {
   background-color: #1f3a8a;
   width: 100%;
-  height: 70vh;
+  height: 75vh;
+}
+
+.top {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row1 {
+  width: 33.33%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+}
+.row2 {
+  width: 33.33%;
+  height: 65vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.row3 {
+  width: 33.33%;
+  height: 65vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+}
+.row1, .row2, .row3{
+  padding-left: 20px;
+}
+.row1 h4, .row2 h4, .row3 h4{
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 10px;
+  border-bottom: 1px solid white;
+  text-align: start;
+}
+
+.row1 ul a, .row2 ul a, .row3 ul a{
+  text-decoration: none;
+  color: white;
+  text-align: start;
+}
+.row1 ul, .row2 ul, .row3 ul{
+  margin-top: 10px;
+  list-style: none;
+  gap: 10px;
+}
+.copy{
+  font-family: Arial, sans-serif;
+  width: 100%;
+  height: 10rem;
+  text-align: center;  
+}
+.copy p{
+  letter-spacing: 0.5px;
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  .bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }

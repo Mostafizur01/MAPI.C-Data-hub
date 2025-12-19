@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: -100,
                 scale: 0,
                 opacity: 0,
-                stagger: 0.06,
-                duration: 1,
+                stagger: 0.01,
+                duration: 0.5,
                 ease: "power2.out",
                 onComplete: () => {
                     initLocomotiveScroll();
@@ -342,32 +342,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-const items = document.querySelectorAll('.card1')
-items.forEach((item) => {
+const items = document.querySelectorAll('.card1');
 
+items.forEach((item) => {
+    const icon = item.querySelector('i');
     item.addEventListener('mouseenter', () => {
         gsap.to(item, {
-            scale: 1.05,            
+            scale: 1.05,
             boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
             duration: 0.4,
             ease: "power2.out"
         });
-     
+        if (icon) {
+            gsap.to(icon, {
+                rotation: -45,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        }
         gsap.to('.bg-wrapper', { filter: "brightness(0.5)", duration: 0.4 });
     });
 
     item.addEventListener('mouseleave', () => {
         gsap.to(item, {
-            scale: 1,               
+            scale: 1,
             boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
             duration: 0.4,
             ease: "power2.out"
         });
-        
+        if (icon) {
+            gsap.to(icon, {
+                rotation: 0,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        }
         gsap.to('.bg-wrapper', { filter: "brightness(1)", duration: 0.4 });
     });
 });
-
 document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     const bgSlides = document.querySelectorAll('.bg-slide');
@@ -379,8 +391,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isAnimating) return;
         isAnimating = true;
 
-        const nextIndex = direction === 'next' 
-            ? (currentIndex + 1) % totalSlides 
+        const nextIndex = direction === 'next'
+            ? (currentIndex + 1) % totalSlides
             : (currentIndex - 1 + totalSlides) % totalSlides;
 
         const tl = gsap.timeline({
@@ -390,27 +402,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        
+
         tl.to(bgSlides[currentIndex], { opacity: 0, duration: 1.2, ease: "power2.inOut" }, 0);
         tl.to(bgSlides[nextIndex], { opacity: 1, duration: 1.2, ease: "power2.inOut" }, 0);
 
-        
-        tl.to(fgSlides[currentIndex], { 
-            opacity: 0, 
-            x: direction === 'next' ? -60 : 60, 
+
+        tl.to(fgSlides[currentIndex], {
+            opacity: 0,
+            x: direction === 'next' ? -60 : 60,
             rotate: direction === 'next' ? -5 : 5,
-            duration: 0.8, 
-            ease: "power2.in" 
+            duration: 0.8,
+            ease: "power2.in"
         }, 0);
 
-        tl.fromTo(fgSlides[nextIndex], 
-            { opacity: 0, x: direction === 'next' ? 60 : -60, rotate: direction === 'next' ? 5 : -5 }, 
-            { opacity: 1, x: 0, rotate: 0, duration: 0.8, ease: "power2.out" }, 
+        tl.fromTo(fgSlides[nextIndex],
+            { opacity: 0, x: direction === 'next' ? 60 : -60, rotate: direction === 'next' ? 5 : -5 },
+            { opacity: 1, x: 0, rotate: 0, duration: 0.8, ease: "power2.out" },
             0.4
         );
     }
 
-    
+
     document.getElementById('nextBtn').addEventListener('click', () => {
         moveSlide('next');
         resetTimer();
@@ -421,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetTimer();
     });
 
-    
+
     document.addEventListener('keydown', (e) => {
         if (e.key === "ArrowRight") {
             moveSlide('next');
