@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview | Magura Polytechnic Institute</title>
+    <link rel="stylesheet" href="/css/locomotive-scroll.css">
+    <link rel="stylesheet" href="/stylesheets/overview.css">
+</head>
+<body>
+
+    <div data-scroll-container>
+    
+    <section class="hero" data-scroll-section>
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-scroll data-scroll-speed="2">
+            <h1 class="glow-text">Magura Polytechnic Institute</h1>
+            <p>ESTD: 2008 | Govt. ID: 50117</p>
+            <div class="hero-btns">
+                <button class="btn-fill">Admission</button>
+                <button class="btn-outline">Virtual Tour</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="campus-grid-section" data-scroll-section>
+        <div class="section-title">
+            <h2 class="anim-up">Explore Our Campus</h2>
+            <div class="underline"></div>
+        </div>
+
+        <div class="bento-grid">
+            <div class="grid-item tall" data-scroll data-scroll-speed="1.2">
+                <img src="/images/mpi-main.jpg" alt="Main Building">
+                <div class="grid-label">Administrative Building</div>
+            </div>
+            <div class="grid-item" data-scroll>
+                <img src="/images/office-principal.jpg" alt="Principal Office">
+                <div class="grid-label">Principal's Office</div>
+            </div>
+            <div class="grid-item" data-scroll>
+                <img src="/images/computer-lab.jpg" alt="Computer Lab">
+                <div class="grid-label">Advanced Computer Lab</div>
+            </div>
+            <div class="grid-item wide" data-scroll data-scroll-speed="0.5">
+                <img src="/images/mechanical-workshop.jpg" alt="Mechanical Workshop">
+                <div class="grid-label">Mechanical & RAC Workshop</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dept-section" data-scroll-section>
+    <div class="dept-container">
+        <% 
+            const deptData = [
+                { name: 'Computer', logo: '/images/logos/computer.png' },
+                { name: 'Civil', logo: '/images/logos/civil.png' },
+                { name: 'Electrical', logo: '/images/logos/electrical.png' },
+                { name: 'Electronics', logo: '/images/logos/electronics.png' },
+                { name: 'Mechanical', logo: '/images/logos/mechanical.png' },
+                { name: 'RAC', logo: '/images/logos/rac.png' }
+            ]; 
+        %>
+
+        <% deptData.forEach(dept => { %>
+            <div class="dept-card" 
+                 data-logo="<%= dept.logo %>"
+                 data-scroll 
+                 data-scroll-speed="1">
+                <div class="card-inner">
+                    <div class="dept-content">
+                        <h3><%= dept.name %> Technology</h3>
+                        <p>Mastering modern engineering at Magura Polytechnic.</p>
+                        <a href="/dept/<%= dept.name.toLowerCase() %>" class="dept-link">Explore Dept →</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <div id="dept-hover-img"></div>
+</section>
+
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="/javascripts/overview.js"></script>
+</body>
+</html>

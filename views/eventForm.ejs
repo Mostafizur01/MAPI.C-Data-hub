@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Event | Magura Polytechnic Institute</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/eventForm.css">
+</head>
+<body>
+
+<div class="form-wrapper">
+    <div class="info-panel">
+        <div class="logo">
+            <img src="/images/logo.png" alt="MPI Logo">
+        </div>
+        <div class="info-content">
+            <h1><%= typeof event !== 'undefined' ? 'Update' : 'Create' %> Event</h1>
+            <p>Maintain the Magura Polytechnic Institute digital gallery by adding the latest campus updates, sports meets, and seminars.</p>
+        </div>
+        <div class="admin-badge">
+            <i class="ri-shield-user-line"></i> Admin Access
+        </div>
+    </div>
+
+    <div class="form-container">
+        <form action="<%= typeof event !== 'undefined' ? '/admin/edit/' + event._id : '/admin/add' %>" method="POST">
+            
+            <div class="input-section">
+                <label for="title">Event Headline</label>
+                <div class="input-wrapper">
+                    <i class="ri-edit-box-line"></i>
+                    <input type="text" name="title" id="title" placeholder="e.g. National Mourning Day 2024" 
+                    value="<%= typeof event !== 'undefined' ? event.title : '' %>" required>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <label for="image">Image URL Path</label>
+                <div class="input-wrapper">
+                    <i class="ri-image-line"></i>
+                    <input type="text" name="image" id="image" placeholder="/images/event-name.jpg" 
+                    value="<%= typeof event !== 'undefined' ? event.image : '' %>" required>
+                </div>
+                <small>Ensure the image is uploaded to the /public/images folder.</small>
+            </div>
+
+            <div class="input-section">
+                <label for="paragraph">Event Description</label>
+                <div class="input-wrapper text-area-wrapper">
+                    <i class="ri-article-line"></i>
+                    <textarea name="paragraph" id="paragraph" rows="6" placeholder="Describe the event in detail..." required><%= typeof event !== 'undefined' ? event.paragraph : '' %></textarea>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit" class="save-btn">
+                    <i class="ri-save-line"></i> <%= typeof event !== 'undefined' ? 'Update Event' : 'Publish Event' %>
+                </button>
+                <a href="/" class="cancel-link">Discard Changes</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

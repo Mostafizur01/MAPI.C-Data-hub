@@ -4,6 +4,9 @@ const port = process.env.PORT || 5000
 
 const path = require('path')
 const cookieParser = require('cookie-parser')
+require('dotenv').config();
+const mongooseConnect = require('./utils/mongooseConnect')
+mongooseConnect()
 
 const index = require('./routes/index')
 const signup = require('./routes/signup')
@@ -17,8 +20,12 @@ const admissions = require('./routes/admissions')
 const snuNow = require('./routes/snu-now')
 const campusLife = require('./routes/campus-life')
 const about = require('./routes/about')
+const event = require('./routes/event')
+const admin = require('./routes/admin')
 
-app.set('view engine', 'ejs')
+app.use('/notice', notice)
+app.use('/data', data)
+app.set('view engine', 'ejs')   
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
@@ -35,6 +42,8 @@ app.use('/admissions', admissions)
 app.use('/snu-now', snuNow)
 app.use('/campus-life', campusLife)
 app.use('/about', about)
+app.use('/event', event)
+app.use('/admin', admin)
 app.use('/', checkUserToke, notice)
 app.use('/', checkUserToke, data)
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Detalis</title>
+    <link rel="stylesheet" href="/stylesheets/eventDetails.css">
+</head>
+<body>
+    <div class="detail-container">
+    <nav class="breadcrumb">
+        <a href="/">Home</a> / <a href="/event">Events</a> / <span><%= event.title %></span>
+    </nav>
+
+    <div class="event-wrapper">
+        <div class="event-header">
+            <img src="<%= event.image %>" alt="<%= event.title %>" class="detail-image">
+            <h1 class="detail-title"><%= event.title %></h1>
+            <div class="detail-meta">
+                <span><i class="ri-calendar-line"></i> Published on: <%= event.createdAt.toDateString() %></span>
+                <span><i class="ri-map-pin-line"></i> Magura Polytechnic Institute</span>
+            </div>
+            <% if (user && user.isAdmin) { %>
+                <div class="admin-actions">
+                    <a href="/event/add" class="btn btn-primary">Add Event</a>
+                    <a href="/event/edit/<%= event._id %>" class="btn btn-secondary">Edit Event</a>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="event-body">
+            <p><%= event.paragraph %></p>
+        </div>
+
+        <div class="detail-footer">
+            <a href="/" class="back-btn"><i class="ri-arrow-left-line"></i> Back to Events</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+</style>
+</body>
+</html>

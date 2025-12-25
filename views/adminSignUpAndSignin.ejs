@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sign Up / Sign In</title>
+    <link rel="stylesheet" href="/stylesheets/adminAuth.css">
+</head>
+<body>
+    <main class="admin-auth-container">
+        <div class="auth-box" id="signup-box" style="display: block;">
+            <h2>Admin Sign Up</h2>
+            <form action="/admin/register" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="switch-link">
+                <span>Already have an account? <a href="#" id="show-signin">Sign In</a></span>
+            </div>
+        </div>
+        <div class="auth-box" id="signin-box" style="display: none;">
+            <h2>Admin Sign In</h2>
+            <form action="/admin/login" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <div class="forgot-link">
+                <a href="/admin/forgot">Forgot Password?</a>
+            </div>
+            <div class="switch-link">
+                <span>Don't have an account? <a href="#" id="show-signup">Sign Up</a></span>
+            </div>
+        </div>
+    </main>
+    <script>
+        const signupBox = document.getElementById('signup-box');
+        const signinBox = document.getElementById('signin-box');
+        document.getElementById('show-signin').onclick = function(e) {
+            e.preventDefault();
+            signupBox.style.display = 'none';
+            signinBox.style.display = 'block';
+        };
+        document.getElementById('show-signup').onclick = function(e) {
+            e.preventDefault();
+            signinBox.style.display = 'none';
+            signupBox.style.display = 'block';
+        };
+    </script>
+</body>
+</html>

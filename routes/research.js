@@ -5,7 +5,7 @@ route.get('/', (req, res) => {
     res.send('this is research page')
 })
 route.get('/overview', (req, res) => {
-    res.send('this is overview page')
+    res.render('overview')
 })
 route.get('/projects', (req, res) => {
     res.send('this is Projects page')

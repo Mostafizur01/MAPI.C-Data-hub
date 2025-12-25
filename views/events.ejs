@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Events</title>
+    <link rel="stylesheet" href="/stylesheets/event.css">
+</head>
+
+<body>
+    <main class="events-container">
+        <h1 class="top">All Events</h1>
+        <% if (locals.admin && admin.isAdmin) { %>
+            <div style="margin-bottom: 20px;">
+                <a href="../views/eventForm" class="btn btn-primary">Add Event</a>
+            </div>
+            <% } %>
+                <div class="events-list">
+                    <% if (events && events.length> 0) { %>
+                        <% events.forEach(function(event) { %>
+                            <div class="event-card">
+                                <a href="/event/<%= event._id %>">
+                                    <img src="<%= event.image %>" alt="<%= event.title %>" class="event-image">
+                                    <h2>
+                                        <%= event.title %>
+                                    </h2>
+                                    <p>
+                                        <%= event.paragraph.substring(0, 100) %>...
+                                    </p>
+                                    <span class="event-date">
+                                        <%= event.createdAt.toDateString() %>
+                                    </span>
+                                </a>
+                                <% if (admin && admin.isAdmin) { %>
+                                    <a href="/event/edit/<%= event._id %>" class="btn btn-secondary">Edit</a>
+                                    <% } %>
+                            </div>
+                            <% }) %>
+                                <% } else { %>
+                                    <p>No events found.</p>
+                                    <% } %>
+                </div>
+    </main>
+</body>
+
+</html>

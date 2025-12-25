@@ -71,7 +71,7 @@
                     </div>
                 </li>
                 <li class="dropdown-item">
-                    <a href="/snu-now">SNU NOW<span class="dropdown-icon">▼</span></a>
+                    <a href="/snu-now">MAPI NOW<span class="dropdown-icon">▼</span></a>
                     <div class="academincs">
                         <ul>
                             <li><a href="/snu-now/news">News</a></li>
@@ -126,50 +126,65 @@
                 <div class="dark"></div>
             </div>
             <div class="page2">
-                <h1>New's pade</h1>
+                <h1>Latest Events</h1>
                 <div class="cards">
-                    <div class="card1">
-                        <img src="/images/entry.jpg" alt="">
-                        <h3>this is our main door</h3>
-                        <p>this is our main door</p>
-                        <i class="ri-arrow-right-fill" class="cardIcon1"></i>
-                    </div>
-                    <div class="card1">
-                        <img src="/images\frontOfCollege.jpg" alt="">
-                        <h3>this is our college front site</h3>
-                        <p>this is our college front site</p>
-                        <i class="ri-arrow-right-fill" class="cardIcon2"></i>
-                    </div>
-                    <div class="card1">
-                        <img src="/images/fullcollege.jpg" alt="">
-                        <h3>this is our college full view</h3>
-                        <p>this is our college full view</p>
-                        <i class="ri-arrow-right-fill" class="cardIcon3"></i>
-                    </div>
-                    <div class="card1 cardLogo">
-                        <img src="/images\logo.png" alt="">
-                    </div>
-                    <div class="card1">
-                        <img src="/images\frontOfCollege.jpg" alt="">
-                        <h3>this is our college front site</h3>
-                        <p>this is our college front site</p>
-                        <i class="ri-arrow-right-fill" class="cardIcon4"></i>
-                    </div>
+                    <% if (events && events.length> 0) { %>
+                        <% events.slice(0, 6).forEach(function(event) { %>
+                            <div class="card1">
+                                <a href="/event/<%= event._id %>">
+                                    <img src="<%= event.image %>" alt="<%= event.title %>">
+                                    <h3>
+                                        <%= event.title %>
+                                    </h3>
+                                    <p>
+                                        <%= event.paragraph.substring(0, 60) %>...
+                                    </p>
+                                    <i class="ri-arrow-right-fill"></i>
+                                </a>
+                            </div>
+                            <% }) %>
+                                <% } else { %>
+                                    <p>No events found.</p>
+                                    <% } %>
                 </div>
             </div>
             <div class="page3" data-scroll data-scroll-speed="0.5">
-                <h1>Magura Playtacnic Institude</h1>
-                <a href="">
-                    <div class="card">
-                        <a href="">See More >></a>
-                        <div class="images">
-                            <img src="/images/fullcollege.jpg" alt="">
-                            <img src="/images/getText.jpg" alt="">
-                            <img src="/images/entry.jpg" alt="">
-                            <img src="/images/campuss.jpg" alt="">
+                <section class="gallery-section" data-scroll data-scroll-speed="0.5">
+                    <div class="container">
+                        <h1 class="section-title">Magura Polytechnic Institute</h1>
+
+                        <div class="photo-grid">
+                            <div class="photo-card">
+                                <img src="/images/fullcollege.jpg" alt="College Building">
+                                <div class="overlay">
+                                    <span>Main Building</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="/images/getText.jpg" alt="Campus Life">
+                                <div class="overlay">
+                                    <span>Academic Life</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="/images/entry.jpg" alt="Entrance">
+                                <div class="overlay">
+                                    <span>Main Entrance</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="/images/campuss.jpg" alt="Campus View">
+                                <div class="overlay">
+                                    <span>Green Campus</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="action-area">
+                            <a href="#" class="btn-more">View All Photos &rarr;</a>
                         </div>
                     </div>
-                </a>
+                </section>
             </div>
             <div class="page4">
                 <div class="slider-container">
@@ -203,32 +218,50 @@
             </div>
             <footer>
                 <div data-scroll data-scroll-speed="-0.5" class="top">
-                    <h1>MAGURA PLAYTCNIC INSTITUDE</h1>
+                    <h1>MAGURA POLYTECHNIC INSTITUTE</h1>
                 </div>
                 <div class="bottom">
                     <div class="row1">
                         <h4>ACADEMICS</h4>
                         <ul>
-                            <a href=""><li>Teachers</li></a>
-                            <a href=""><li>Students</li></a>
-                            <a href=""><li>Form</li></a>    
+                            <a href="">
+                                <li>Teachers</li>
+                            </a>
+                            <a href="">
+                                <li>Students</li>
+                            </a>
+                            <a href="">
+                                <li>Form</li>
+                            </a>
                         </ul>
                         <h4>RESEARCH</h4>
                         <ul>
-                            <a href=""><li>Overview</li></a>
-                            <a href=""><li>Projects</li></a>
+                            <a href="">
+                                <li>Overview</li>
+                            </a>
+                            <a href="">
+                                <li>Projects</li>
+                            </a>
                         </ul>
                     </div>
                     <div class="row2">
                         <h4>ADMISSIONS</h4>
                         <ul>
-                            <a href=""><li>Undergraduate</li></a>
-                            <a href=""><li>Graduate</li></a>
+                            <a href="">
+                                <li>Undergraduate</li>
+                            </a>
+                            <a href="">
+                                <li>Graduate</li>
+                            </a>
                         </ul>
                         <h4>SUN NOW</h4>
                         <ul>
-                            <a href=""><li>News</li></a>
-                            <a href=""><li>Events</li></a>
+                            <a href="">
+                                <li>News</li>
+                            </a>
+                            <a href="">
+                                <li>Events</li>
+                            </a>
                         </ul>
                         <div class="opic">
                             <img src="" alt="">
@@ -237,13 +270,21 @@
                     <div class="row3">
                         <h4>CAPUS LIFE</h4>
                         <ul>
-                            <a href=""><li>Clubs</li></a>
-                            <a href=""><li>Housing</li></a>
+                            <a href="">
+                                <li>Clubs</li>
+                            </a>
+                            <a href="">
+                                <li>Housing</li>
+                            </a>
                         </ul>
                         <h4>ABOUT</h4>
                         <ul>
-                            <a href=""><li>Our story</li></a>
-                            <a href=""><li>Contact</li></a>
+                            <a href="">
+                                <li>Our story</li>
+                            </a>
+                            <a href="">
+                                <li>Contact</li>
+                            </a>
                         </ul>
                     </div>
                 </div>

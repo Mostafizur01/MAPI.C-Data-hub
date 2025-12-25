@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/adminAuth.css">
+</head>
+<body>
+    <main class="admin-auth-container">
+        <div class="auth-box">
+            <h2>Welcome, <%= admin && admin.id ? 'Admin' : '' %>!</h2>
+            <p>You are logged in as admin.</p>
+            <a href="/admin/logout"><button>Logout</button></a>
+        </div>
+    </main>
+</body>
+</html>
