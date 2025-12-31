@@ -2,13 +2,13 @@ const express = require('express')
 const route = express.Router()
 
 route.get('/', (req, res) => {
-    res.send('this is campus life page')
+    res.render('campusLife')
 })
 route.get('/clubs', (req, res) => {
-    res.send('thsi is clubs page')
+    res.render('clubs')
 })
 route.get('/housing', (req, res) => {
-    res.send('this is housing page')
+    res.render('housing')
 })
 
 module.exports = route

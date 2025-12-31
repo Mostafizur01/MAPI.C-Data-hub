@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --bg: #0a0a0a;
+    --accent: #3b82f6;
+    --glass: rgba(255, 255, 255, 0.05);
+    --text: #ffffff;
+}
+
+html.has-scroll-smooth {
+    overflow: hidden;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+}
+
+.admin-form-section {
+    padding: 50px 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    background: var(--glass);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid var(--accent);
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 350px;
+    gap: 25px;
+    padding: 50px 5%;
+}
+
+.project-card {
+    background: var(--glass);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+}
+
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    opacity: 0.4;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.project-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.overlay-column {
+    flex: 1;
+    background: var(--accent);
+    transform: translateY(100%);
+}
+
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    .project-card {
+        grid-column: span 1 !important;
+        min-height: 350px;
+    }
+}

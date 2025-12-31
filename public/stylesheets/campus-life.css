@@ -1,0 +1,218 @@
+:root {
+    --bg: #0a0a0a;
+    --primary: #38bdf8;
+    --text: #ffffff;
+    --gray: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Magura_Polytechnic_Institute.jpg/1200px-Magura_Polytechnic_Institute.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 8vw;
+    color: var(--primary);
+    line-height: 1;
+}
+
+/* Grid Details */
+.details-section {
+    padding: 100px 5%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.image-wrapper img {
+    width: 100%;
+    border-radius: 20px;
+    filter: grayscale(100%);
+    transition: 0.5s;
+}
+
+.image-wrapper img:hover {
+    filter: grayscale(0%);
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+/* Facilities Cards */
+.facilities {
+    padding: 100px 5%;
+    background: #111;
+}
+
+.section-title {
+    font-size: 6vw;
+    white-space: nowrap;
+    opacity: 0.1;
+    margin-bottom: 50px;
+}
+
+.cards-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.f-card {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.f-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+/* CTA */
+.cta {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--primary);
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* 1. Large Screens & Desktops (1200px and down) */
+@media (max-width: 1200px) {
+    .hero h1 {
+        font-size: 10vw;
+    }
+    .text-content h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* 2. Tablets & iPads (992px and down) */
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: 1fr; /* ছবি এবং লেখা একটির নিচে আরেকটি আসবে */
+        gap: 30px;
+        text-align: center;
+    }
+
+    .image-wrapper {
+        order: 1; /* ইমেজ আগে থাকবে */
+    }
+
+    .text-content {
+        order: 2;
+        padding: 0 10px;
+    }
+
+    .section-title {
+        font-size: 10vw;
+        opacity: 0.2;
+    }
+}
+
+/* 3. Mobile Devices (768px and down) */
+@media (max-width: 768px) {
+    /* Hero section adjustment */
+    .hero h1 {
+        font-size: 14vw;
+        text-align: center;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    /* Padding adjustments for sections */
+    .details-section, .facilities {
+        padding: 60px 20px;
+    }
+
+    /* Facilities Cards stacking */
+    .cards-container {
+        flex-direction: column;
+    }
+
+    .f-card {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .text-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .text-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-inner h2 {
+        font-size: 1.5rem;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 16vw;
+    }
+
+    .btn {
+        width: 100%; 
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 12vw;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .image-wrapper img {
+        filter: grayscale(0%);
+    }
+}

@@ -22,6 +22,11 @@ const campusLife = require('./routes/campus-life')
 const about = require('./routes/about')
 const event = require('./routes/event')
 const admin = require('./routes/admin')
+const photos = require('./routes/photos')
+const news = require('./routes/news')
+const projectRouter = require('./routes/research');
+const profile = require('./routes/profile')
+const logout = require('./routes/logout')
 
 app.use('/notice', notice)
 app.use('/data', data)
@@ -32,18 +37,22 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 
-
 app.use('/', index)
 app.use('/signup', signup)
 app.use('/signin', signin)
 app.use('/academics', academics)
-app.use('/research', research)
+app.use('/research', research);
 app.use('/admissions', admissions)
 app.use('/snu-now', snuNow)
 app.use('/campus-life', campusLife)
 app.use('/about', about)
 app.use('/event', event)
 app.use('/admin', admin)
+app.use('/photos', photos)
+app.use('/news', news)
+app.use('/projects', projectRouter);
+app.use('/logout', logout)
+app.use('/profile', checkUserToke, profile)
 app.use('/', checkUserToke, notice)
 app.use('/', checkUserToke, data)
 

@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --bg: #050505;
+    --accent: #3b82f6;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+    --text: #ffffff;
+}
+
+html.has-scroll-smooth {
+    overflow: hidden;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.overlay-column {
+    flex: 1;
+    background: var(--accent);
+    transform: translateY(100%);
+}
+.housing-hero {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    background: linear-gradient(to bottom, #fff, #555);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.housing-grid-section {
+    padding: 80px 5%;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 340px;
+    gap: 20px;
+}
+
+.housing-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 35px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.housing-card:hover {
+    border-color: var(--accent);
+    transform: scale(0.98);
+}
+
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-medium {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    opacity: 0.3;
+    object-fit: cover;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content h3 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    opacity: 0.7;
+    line-height: 1.6;
+}
+
+.facility-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.facility-list li {
+    background: rgba(59, 130, 246, 0.2);
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+.footer-section {
+    padding: 100px;
+    text-align: center;
+    opacity: 0.2;
+}
+@media screen and (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 280px;
+    }
+    
+    .bento-large {
+        grid-column: span 2;
+    }
+}
+
+@media screen and (max-width: 768px) {
+   
+    .club-hero, .housing-hero {
+        height: 50vh;
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 15vw; 
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr; 
+        grid-auto-rows: auto;
+        gap: 15px;
+    }
+
+    .club-card, .housing-card {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        padding: 25px;
+        min-height: 300px; 
+    }
+
+    .bento-large, .bento-medium {
+        min-height: 400px;
+    }
+
+    .club-info h3, .card-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .club-info p, .card-content p {
+        font-size: 0.95rem;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .hero-title {
+        font-size: 18vw;
+    }
+    
+    .clubs-grid-section, .housing-grid-section {
+        padding: 40px 15px;
+    }
+    
+    .facility-list {
+        gap: 8px;
+    }
+    
+    .facility-list li {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+}

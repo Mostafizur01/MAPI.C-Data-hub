@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/stylesheets/edit-profile.css">
+</head>
+<body>
+    <div data-scroll-container>
+    <div class="edit-container" data-scroll-section>
+        <div class="edit-card">
+            <h2>Edit Your Profile</h2>
+            
+            <% if(error) { %> <p class="alert error"><%= error %></p> <% } %>
+            <% if(success) { %> <p class="alert success"><%= success %></p> <% } %>
+
+            <form action="/profile/edit" method="POST" class="edit-form">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" value="<%= user.name %>" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Email (Cannot be changed)</label>
+                    <input type="email" value="<%= user.email %>" disabled>
+                </div>
+
+                <div class="input-group">
+                    <label>New Password (Leave blank to keep current)</label>
+                    <input type="password" name="password" placeholder="Min 6 characters">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Update Profile</button>
+                    <a href="/profile" class="btn-back">Go Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="/javascripts/edit-profile.js"></script>
+</body>
+</html>

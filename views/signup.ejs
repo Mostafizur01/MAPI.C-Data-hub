@@ -6,20 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in</title>
     <link rel="stylesheet" href="/stylesheets/inAndUp.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
+   <div class="background-circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
     <main>
-        <div class="all">
-            <form action="/signup" method="post">
-                <input type="text" name="name" placeholder="Enter Your Name" autocomplete="name">
-                <input type="email" name="email" placeholder="Enter Your Email" autocomplete="email">
-                <input type="password" name="password" placeholder="Enter Password" autocomplete="new-password">
-                <button type="submit">Sign Up</button>
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Create Account</h1>
+                <p>Join the MPI community today</p>
+            </div>
+            
+            <form action="/signup" method="post" class="auth-form">
+                <div class="input-group">
+                    <input type="text" name="name" required placeholder="Full Name" autocomplete="name">
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" required placeholder="Email Address" autocomplete="email">
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" required placeholder="Password" autocomplete="new-password">
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
             </form>
-            <div>
-                <p>if you have account then click</p>
-                <a href="/signin">Sing In</a>
+
+            <div class="auth-footer">
+                <p>Already have an account? <a href="/signin">Sign In</a></p>
             </div>
         </div>
     </main>

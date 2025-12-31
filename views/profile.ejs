@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= user.name %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+
+<body>
+    <div data-scroll-container>
+        <section class="profile-hero" data-scroll-section>
+            <div class="container">
+                <div class="profile-card">
+                    <div class="profile-img-wrapper">
+                        <img src="https://ui-avatars.com/api/?name=<%= user.name %>&background=random" alt="User">
+                    </div>
+                    <h1 class="user-name">
+                        <%= user.name %>
+                    </h1>
+                    <p class="user-email">
+                        <%= user.email %>
+                    </p>
+
+                    <div class="profile-actions">
+                        <a href="/profile/edit" class="btn-edit">Edit Profile</a>
+                        <a href="/profile/logout" class="btn-logout">Logout</a>
+                        <a href="/" class="btn-home">Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="user-events" data-scroll-section>
+            <div class="container">
+                <h2 class="section-title">Recent Events</h2>
+                <div class="event-grid">
+                    <% if(events.length> 0) { %>
+                        <% events.forEach(event=> { %>
+                            <div class="event-card-item">
+                                <h3>
+                                    <%= event.title %>
+                                </h3>
+                                <p>
+                                    <%= event.date %>
+                                </p>
+                            </div>
+                            <% }) %>
+                                <% } else { %>
+                                    <p>No events found.</p>
+                                    <% } %>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/javascripts/profile.js"></script>
+</body>
+
+</html>

@@ -5,10 +5,10 @@ route.get('/', (req, res) => {
     res.render('about')
 })
 route.get('/our-story', (req, res) => {
-    res.send('this is our story page')
+    res.render('our-story')
 })
 route.get('/contact', (req, res) => {
-    res.send('this is contact page')
+    res.render('contact')
 })
 
 module.exports = route

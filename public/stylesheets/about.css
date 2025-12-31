@@ -1,3 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
 :root {
     --primary: #2563eb;
     --primary-dark: #1d4ed8;
@@ -266,9 +278,11 @@ h1 {
     color: white;
     border-color: var(--primary);
 }
-.scroll-hint{
+
+.scroll-hint {
     padding: 20px;
 }
+
 /* --- Section 5: Vision Box --- */
 .vision-box {
     background: var(--text-main);
@@ -299,5 +313,8 @@ h1 {
 
     .glass {
         padding: 2rem;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
     }
 }

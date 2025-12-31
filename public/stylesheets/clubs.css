@@ -1,0 +1,200 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --accent: #3b82f6;
+    --glass: rgba(255, 255, 255, 0.05);
+    --text: #ffffff;
+}
+
+/* Locomotive Fixes */
+html.has-scroll-smooth {
+    overflow: hidden;
+}
+
+html.has-scroll-dragging {
+    user-select: none;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Transition Overlay */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.overlay-column {
+    flex: 1;
+    background: var(--accent);
+    transform: translateY(100%);
+}
+
+/* Hero Section */
+.club-hero {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    margin: 0;
+    background: linear-gradient(to bottom, #fff, #444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.6;
+    margin-top: 10px;
+}
+
+/* Bento Grid */
+.clubs-grid-section {
+    padding: 80px 5%;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 320px;
+    gap: 25px;
+}
+
+.club-card {
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 35px;
+    padding: 35px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: border-color 0.4s ease;
+}
+
+.club-card:hover {
+    border-color: var(--accent);
+}
+
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-medium {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.club-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.club-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.club-info h3 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.club-info p {
+    font-size: 1rem;
+    opacity: 0.7;
+    line-height: 1.6;
+}
+@media screen and (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        grid-auto-rows: 300px;
+        gap: 20px;
+    }
+    
+    .bento-large {
+        grid-column: span 2; 
+    }
+
+    .hero-title {
+        font-size: 10vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .club-hero {
+        height: 50vh;
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 15vw; 
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr; 
+        grid-auto-rows: auto; 
+        gap: 15px;
+        padding-bottom: 50px;
+    }
+
+    .club-card {
+        grid-column: span 1 !important; 
+        grid-row: span 1 !important;
+        min-height: 350px;
+        padding: 25px;
+        border-radius: 25px;
+    }
+
+    .club-img {
+        height: 50%; 
+    }
+
+    .club-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .club-info p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .clubs-grid-section {
+        padding: 40px 15px;
+    }
+
+    .hero-title {
+        font-size: 18vw;
+    }
+}

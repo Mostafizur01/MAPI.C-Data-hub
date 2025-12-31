@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --mpi-blue: #1f3a8a;
+    --mpi-light: #f8fafc;
+    --mpi-accent: #38bdf8;
+}
+
+.contact-hero {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(31, 58, 138, 0.9), rgba(31, 58, 138, 0.9)),
+        url('https://images.unsplash.com/photo-1523050335102-c32509087440?q=80&w=1000');
+    background-size: cover;
+    color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    padding: 80px 20px;
+}
+
+.info-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.campus-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.details {
+    padding: 30px;
+}
+
+.detail-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    align-items: flex-start;
+}
+
+.detail-item i {
+    font-size: 24px;
+    color: var(--mpi-blue);
+    background: #e0f2fe;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.mpi-form {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+.btn-submit {
+    background: var(--mpi-blue);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Responsive Style */
+@media (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-hero {
+        height: 30vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .mpi-form {
+        padding: 20px;
+    }
+}

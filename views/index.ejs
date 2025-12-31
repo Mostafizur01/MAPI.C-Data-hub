@@ -12,24 +12,34 @@
 </head>
 
 <body data-scroll-container>
-    <div class="lodingAn">
-        <div class="preloader" id="preloader">
-            <div class="loading-circle"></div>
-            <div class="loading-text">
-                LOADING... <span id="loading-count">0</span>%
+   <div class="loading <%= locals.token ? 'has-token' : 'no-token' %>">
+    <% if (!locals.token) { %>
+        <div class="transition-overlay">
+            <div class="overlay-column"></div>
+            <div class="overlay-column"></div>
+            <div class="overlay-column"></div>
+        </div>
+        <div class="lodingAn">
+            <div class="preloader" id="preloader">
+                <div class="loading-circle"></div>
+                <div class="loading-text">
+                    LOADING... <span id="loading-count">0</span>%
+                </div>
             </div>
         </div>
-    </div>
+    <% } %>
+
     <main class="content" id="main-content">
         <header>
             <h1 class="main-title">Welcome to MAPI!</h1>
             <p class="main-subtitle">Computer Science And Technology</p>
         </header>
-
         <div class="cta-section">
-            <img src="/images/logo.png" alt="">
+            <img src="/images/logo.png" alt="Logo">
         </div>
     </main>
+</div>
+
     <header class="main-header">
         <a href="/" class="logo header-logo">MAPI.C</a>
 
@@ -56,7 +66,7 @@
                     <div class="academincs">
                         <ul>
                             <li><a href="/research/overview">Overview</a></li>
-                            <li><a href="/research/projects">Projects</a></li>
+                            <li><a href="/projects/all-projects">Projects</a></li>
                         </ul>
                     </div>
                 </li>
@@ -103,17 +113,16 @@
                         </ul>
                     </div>
                 </li>
-                <% if (typeof token !=='undefined' && token) { %>
-                    <li>
-                        <a href="/profile" title="Profile">
-                            <img src="/images/profile-icon.png" alt="Profile"
-                                style="width:24px; height:24px; border-radius:50%;">
-                        </a>
-                    </li>
-                    <% } else { %>
-                        <li><a href="/signin">SIGN IN</a></li>
-                        <li><a href="/signup">SIGN UP</a></li>
-                        <% } %>
+                <% if (locals.token) { %>
+    <li>
+        <a href="/profile" class="profile" title="Profile">
+            <i class="ri-user-line"></i>
+        </a>
+    </li>
+<% } else { %>
+    <li><a href="/signin">SIGN IN</a></li>
+    <li><a href="/signup">SIGN UP</a></li>
+<% } %>
             </ul>
         </nav>
     </header>
@@ -148,10 +157,39 @@
                                     <% } %>
                 </div>
             </div>
+            <div class="news-container">
+                <% if (locals.news && news.length> 0) { %>
+                    <div class="news-grid">
+                        <% news.slice(0, 6).forEach((item, index)=> { %>
+                            <div class="news-card" data-scroll data-scroll-speed="<%= index % 2 === 0 ? '1' : '1.5' %>">
+                                <div class="card-img-wrapper">
+                                    <img src="<%= item.image %>" alt="<%= item.title %>">
+                                </div>
+                                <div class="card-content">
+                                    <span class="date">Latest Update</span>
+                                    <h2>
+                                        <%= item.title %>
+                                    </h2>
+                                    <p>
+                                        <%= item.paragraph.substring(0, 100) %>...
+                                    </p>
+                                    <a href="/event/<%= item._id %>" class="read-more">
+                                        Explore <i class="ri-arrow-right-line"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                    <% } else { %>
+                        <p class="no-news">No news available at the moment.</p>
+                        <% } %>
+            </div>
             <div class="page3" data-scroll data-scroll-speed="0.5">
                 <section class="gallery-section" data-scroll data-scroll-speed="0.5">
                     <div class="container">
-                        <h1 class="section-title">Magura Polytechnic Institute</h1>
+                        <h1 class="section-title" data-scroll data-scroll-speed="10" data-scroll-direction="horizontal">
+                            Magura Polytechnic Institute
+                        </h1>
 
                         <div class="photo-grid">
                             <div class="photo-card">
@@ -181,7 +219,7 @@
                         </div>
 
                         <div class="action-area">
-                            <a href="#" class="btn-more">View All Photos &rarr;</a>
+                            <a href="/photos" class="btn-more">View All Photos &rarr;</a>
                         </div>
                     </div>
                 </section>

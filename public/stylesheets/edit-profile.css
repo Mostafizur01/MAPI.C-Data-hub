@@ -1,0 +1,150 @@
+.edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.edit-card {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #38bdf8;
+}
+
+.form-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+    border-radius: 8px;
+}
+
+.btn-save {
+    background: #38bdf8;
+    color: #0f172a;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-back {
+    background-color: #38bdf8;
+    color: #0f172a;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.error {
+    background: #ef4444;
+}
+
+.success {
+    background: #22c55e;
+}
+.btn-save, .btn-back, .btn-logout, .btn-edit {
+    position: relative;
+    overflow: hidden; 
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.btn-save::after, .btn-back::after, .btn-logout::after, .btn-edit::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: none;
+    pointer-events: none;
+}
+/* --- Responsive Design --- */
+
+@media (max-width: 1024px) {
+    .profile-card, .edit-card {
+        max-width: 90%;
+        padding: 2.5rem;
+    }
+    
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-actions, .form-actions {
+        flex-direction: column; 
+        gap: 10px;
+    }
+
+    .btn-save, .btn-logout, .btn-edit, .btn-back {
+        width: 100%; 
+    }
+
+    .user-name {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card, .edit-card {
+        padding: 1.5rem;
+        margin: 20px auto;
+    }
+
+    .profile-img-wrapper img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+}

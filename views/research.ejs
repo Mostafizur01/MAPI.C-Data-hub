@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Hub | MPI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <link rel="stylesheet" href="/stylesheets/research.css">
+</head>
+<body>
+
+    <div data-scroll-container id="main-container">
+        
+        <section class="hero-section" data-scroll-section>
+            <div class="hero-content" data-scroll data-scroll-speed="-3">
+                <h1 class="reveal-text">MPI RESEARCH HUB</h1>
+                <p>মাগুরা পলিটেকনিক ইনস্টিটিউটের উদ্ভাবনী ভবিষ্যতের পথচলা</p>
+            </div>
+            <div class="scroll-down">Scroll to Explore</div>
+        </section>
+
+        <section class="projects-section" data-scroll-section>
+            <div class="section-title" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
+                <h2>Featured Projects</h2>
+            </div>
+
+            <div class="projects-grid">
+                <% if (projects.length > 0) { %>
+                    <% projects.forEach((project, index) => { %>
+                        <div class="project-card" data-scroll data-scroll-speed="<%= (index % 2 === 0) ? 1 : 2 %>">
+                            <div class="card-inner">
+                                <img src="<%= project.photo || '/images/default-res.jpg' %>" alt="Research">
+                                <div class="card-info">
+                                    <h3><%= project.headline %></h3>
+                                    <p><%= project.details.substring(0, 100) %>...</p>
+                                    <a href="/research/all-projects" class="btn-more">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+        </section>
+
+        <section class="vision-section" data-scroll-section>
+            <div class="big-text" data-scroll data-scroll-speed="4">INNOVATION</div>
+            <div class="big-text" data-scroll data-scroll-speed="2" style="text-align: right;">TECHNOLOGY</div>
+        </section>
+
+        <section class="footer-teaser" data-scroll-section>
+            <h2 data-scroll data-scroll-speed="1">Ready to see more?</h2>
+            <a href="/research/all-projects" class="all-projects-link">View All Research Projects →</a>
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="/javascripts/research.js"></script>
+</body>
+</html>

@@ -6,19 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/inAndUp.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div class="background-circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
     <main>
-        <div class="all">
-            <form action="/signin" method="post">
-                <input type="email" name="email" placeholder="email" autocomplete="email">
-                <input type="password" name="password" placeholder="password" autocomplete="current-password">
-                <button type="submit">Sing In</button>
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Welcome Back</h1>
+                <p>Glad to see you again!</p>
+            </div>
+
+            <form action="/signin" method="POST" class="auth-form">
+                <% if (locals.error) { %>
+                    <p class="error-message" style="color: #ff4d4d; text-align: center; margin-bottom: 15px;">
+                        <%= error %>
+                    </p>
+                    <% } %>
+
+                        <div class="input-group">
+                            <input type="email" name="email" required placeholder="Email Address" autocomplete="email">
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" name="password" required placeholder="Password"
+                                autocomplete="current-password">
+                        </div>
+
+                        <button type="submit" class="submit-btn">Sign In</button>
             </form>
-            <div>
-                <p>if you don't have any accout then click</p>
-                <a href="/signup">Sign Up</a>
+
+            <div class="auth-footer">
+                <p>If you don't have an account, please <a href="/signup">Sign Up</a></p>
             </div>
         </div>
     </main>

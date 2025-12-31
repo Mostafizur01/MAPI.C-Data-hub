@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos</title>
+    <link rel="stylesheet" href="/stylesheets/photos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+</head>
+
+<body>
+    <main data-scroll-container>
+        <section class="photo-section" data-scroll-section>
+            <h1 class="gallery-title">MPI Campus Gallery</h1>
+
+            <% if (locals.isAdmin) { %>
+                <div class="admin-upload-box" style="margin: 20px auto; max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+                    <h3>Upload New Photo (Admin Only)</h3>
+                    <form action="/photos/upload" method="POST" enctype="multipart/form-data">
+                        <div style="margin-bottom: 10px;">
+                            <input type="text" name="title" placeholder="Photo Title" required style="width: 100%; padding: 8px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <textarea name="desc" placeholder="Photo Description" style="width: 100%; padding: 8px;"></textarea>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <input type="file" name="image" required>
+                        </div>
+                        <button type="submit" style="background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer;">Upload Photo</button>
+                    </form>
+                </div>
+            <% } %>
+
+            <div class="photo-grid">
+                <% if (locals.photos && photos.length > 0) { %>
+                    <% photos.forEach(photo=> { %>
+                        <div class="photo-card" data-scroll>
+                            <img src="<%= photo.url %>" alt="<%= photo.title %>" class="gallery-img">
+                            <div class="photo-overlay">
+                                <h4><%= photo.title %></h4>
+                                <p><%= photo.desc %></p>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No photos available yet.</p>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <div id="photo-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="full-img">
+        <div id="modal-caption"></div>
+    </div>
+
+    <script src="/javascripts/index.js"></script>
+</body>
+
+</html>

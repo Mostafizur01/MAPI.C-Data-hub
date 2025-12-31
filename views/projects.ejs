@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Projects | MPI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <link rel="stylesheet" href="/stylesheets/projects.css">
+</head>
+<body>
+
+    <div class="transition-overlay">
+        <div class="overlay-column"></div>
+        <div class="overlay-column"></div>
+        <div class="overlay-column"></div>
+    </div>
+
+    <main data-scroll-container>
+        <section class="research-hero" data-scroll-section>
+            <div data-scroll data-scroll-speed="-2">
+                <h1 class="hero-title">MPI RESEARCH</h1>
+                <p>মাগুরা পলিটেকনিকের উদ্ভাবনী প্রকল্পের সংগ্রহশালা</p>
+            </div>
+        </section>
+
+        <% if (locals.isAdmin) { %>
+            <section class="admin-form-section" data-scroll-section>
+                <div class="form-container">
+                    <h2>Add New Research Project</h2>
+                    <form action="/projects/add" method="POST">
+                        <input type="text" name="headline" placeholder="Project Headline" required>
+                        <textarea name="details" placeholder="Project Details" required></textarea>
+                        <input type="text" name="photo" placeholder="Photo URL">
+                        <input type="text" name="link" placeholder="Documentation Link">
+                        <button type="submit">Publish Project</button>
+                    </form>
+                </div>
+            </section>
+        <% } %>
+
+        <section class="projects-grid-section" data-scroll-section>
+            <div class="bento-grid">
+                <% if (locals.projects && projects.length > 0) { %>
+                    <% projects.forEach((project, index) => { %>
+                        <div class="project-card <%= index % 3 === 0 ? 'bento-large' : '' %>" data-scroll data-scroll-speed="1">
+                            <div class="card-img">
+                                <img src="<%= project.photo || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158' %>" alt="Project Image">
+                            </div>
+                            <div class="card-content">
+                                <h3><%= project.headline %></h3>
+                                <p><%= project.details.substring(0, 150) %>...</p>
+                                <% if(project.link) { %>
+                                    <a href="<%= project.link %>" target="_blank" class="project-btn">View Details</a>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }) %> <% } else { %>
+                    <p style="text-align: center; grid-column: 1/-1; padding: 50px; opacity: 0.5;">বর্তমানে কোনো প্রজেক্ট নেই।</p>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="/javascripts/projects.js"></script>
+</body>
+</html>
