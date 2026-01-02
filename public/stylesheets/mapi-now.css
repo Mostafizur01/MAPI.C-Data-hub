@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap');
+
+:root {
+    --bg: #0a0a0a;
+    --accent: #00f2ff;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    overflow: hidden;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 5%;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: var(--accent);
+}
+
+/* Hero */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 12vw;
+    line-height: 0.8;
+    text-transform: uppercase;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+}
+
+/* About/Stats Sticky */
+.about-section {
+    min-height: 100vh;
+    padding: 100px 5%;
+}
+
+.sticky-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left-about {
+    width: 40%;
+}
+
+.left-about h2 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.left-about span {
+    color: var(--accent);
+}
+
+.right-stats {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transform: translateY(100%);
+}
+
+.glass {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.glass:hover {
+    border-color: var(--accent);
+    transform: translateX(10px);
+}
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 15vw;
+    }
+    
+    .reveal-h2 {
+        font-size: 3rem;
+    }
+
+    .sticky-wrapper {
+        gap: 40px;
+        padding: 60px 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow: auto; 
+    }
+
+    .hero-section {
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 18vw;
+        line-height: 1;
+    }
+
+    .sticky-container, .sticky-wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-about, .left-content {
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .left-about h2 {
+        font-size: 2.5rem;
+    }
+
+    .right-stats, .right-scroll {
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .glass {
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 22vw;
+    }
+
+    .glass h3 {
+        font-size: 1.5rem;
+    }
+
+    .glass p {
+        font-size: 0.9rem;
+    }
+}

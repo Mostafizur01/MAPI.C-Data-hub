@@ -2,14 +2,14 @@ const express = require('express')
 const route = express.Router()
 
 route.get('/', (req, res) => {
-    res.send('this snu now pgae')
+    res.render('mapi-now')
 })
 
 route.get('/news', (req, res) => {
-    res.send('this is news page')
+    res.render('news')
 })
 route.get('/events', (req, res) => {
-    res.send('this is events page')
+    res.render('events')
 })
 
 module.exports = route

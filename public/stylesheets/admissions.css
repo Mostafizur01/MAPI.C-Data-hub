@@ -1,0 +1,192 @@
+/* academics.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+:root {
+    --primary-cyan: #00f2ff;
+    --deep-purple: #7000ff;
+    --bg-black: #050505;
+    --glass-white: rgba(255, 255, 255, 0.03);
+    --border-light: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+}
+
+/* --- Hero Section --- */
+.academic-hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 10;
+}
+
+.hero-content h1 {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    line-height: 0.9;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-top: 20px;
+    opacity: 0.6;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* --- Admission Info Section --- */
+.admission-info {
+    padding: 150px 0;
+    background: var(--bg-black);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 80px;
+    text-align: center;
+    color: var(--primary-cyan);
+    text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+}
+
+/* --- Admission Grid (Eligibility & Apply) --- */
+.admission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.info-card {
+    background: var(--glass-white);
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(20px);
+    padding: 50px;
+    border-radius: 40px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.info-card:hover {
+    border-color: var(--primary-cyan);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-10px);
+}
+
+.info-card h3 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: var(--primary-cyan);
+}
+
+.info-card ul {
+    list-style: none;
+}
+
+.info-card ul li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+    opacity: 0.8;
+}
+
+.info-card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-cyan);
+}
+
+.apply-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    border-radius: 100px;
+    font-weight: 700;
+    transition: 0.4s;
+}
+
+.apply-btn:hover {
+    background: var(--primary-cyan);
+    box-shadow: 0 0 25px var(--primary-cyan);
+    transform: scale(1.05);
+}
+
+/* --- Steps Section --- */
+.steps-container {
+    margin-top: 100px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 60px;
+    background: var(--glass-white);
+    border: 1px solid var(--border-light);
+    border-radius: 40px;
+    margin-bottom: 30px;
+    transition: 0.5s;
+}
+
+.step:hover {
+    border-left: 5px solid var(--primary-cyan);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.step-num {
+    font-size: 4rem;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary-cyan);
+    opacity: 0.5;
+    line-height: 1;
+}
+
+.step-text h4 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.step-text p {
+    opacity: 0.6;
+    font-size: 1.1rem;
+}
+
+/* --- Locomotive Scroll Optimization --- */
+[data-scroll-section] {
+    overflow: hidden;
+}

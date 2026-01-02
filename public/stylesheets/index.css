@@ -1017,9 +1017,9 @@ footer {
   text-align: start;
 }
 
-.row1 ul a,
-.row2 ul a,
-.row3 ul a {
+.row1 a,
+.row2 a,
+.row3 a {
   text-decoration: none;
   color: white;
   text-align: start;

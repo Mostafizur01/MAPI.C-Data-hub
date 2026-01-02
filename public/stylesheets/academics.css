@@ -1,0 +1,207 @@
+:root {
+    --accent: #00f2ff;
+    --bg-black: #050505;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--bg-black);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* Hero Section */
+.academic-hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.giant-text {
+    font-size: 15vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.1);
+    letter-spacing: -5px;
+}
+
+.hero-sub p {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+/* Sticky Section */
+.sticky-wrapper {
+    display: flex;
+    padding: 100px 5%;
+    gap: 80px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.left-content {
+    position: sticky;
+    top: 15vh;
+    height: fit-content;
+    width: 40%;
+}
+
+.reveal-h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.reveal-h2 span { color: var(--accent); }
+
+.process-indicator {
+    width: 2px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 30px 0;
+}
+
+.process-indicator .line {
+    width: 100%; height: 0%;
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* Glass Cards */
+.right-scroll { width: 55%; }
+
+.glass-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(15px);
+    padding: 50px;
+    border-radius: 30px;
+    margin-bottom: 40px;
+    transition: 0.5s ease;
+    opacity: 0; 
+}
+
+.glass-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-10px);
+}
+
+.badge {
+    background: var(--accent);
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.tech-tags span {
+    display: inline-block;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    margin: 10px 5px 0 0;
+    border-radius: 5px;
+    font-size: 13px;
+}
+/* --- Responsive Fixes --- */
+
+/* 1. Large Tablets & Small Laptops (Max 1200px) */
+@media (max-width: 1200px) {
+    .giant-text {
+        font-size: 18vw;
+    }
+    .reveal-h2 {
+        font-size: 3.2rem;
+    }
+    .sticky-wrapper {
+        gap: 40px;
+    }
+}
+
+/* 2. Tablets (Max 992px) */
+@media (max-width: 992px) {
+    /* পিনিং এনিমেশন ছোট ডিভাইসে ঝামেলা করতে পারে তাই লেআউট ফ্লেক্স কলাম করে দেওয়া হলো */
+    .sticky-wrapper {
+        flex-direction: column;
+        padding: 60px 5%;
+    }
+
+    .left-content {
+        width: 100%;
+        position: relative; /* স্টিকি পজিশন সরিয়ে ফেলা হলো */
+        top: 0;
+        margin-bottom: 40px;
+    }
+
+    .right-scroll {
+        width: 100%;
+    }
+
+    .giant-text {
+        font-size: 22vw;
+    }
+
+    .reveal-h2 {
+        font-size: 2.8rem;
+    }
+
+    .glass-card {
+        padding: 30px;
+        margin-bottom: 25px;
+    }
+}
+
+/* 3. Mobile Devices (Max 600px) */
+@media (max-width: 600px) {
+    .academic-hero {
+        padding: 0 20px;
+    }
+
+    .giant-text {
+        font-size: 25vw;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-sub p {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+
+    .reveal-h2 {
+        font-size: 2.2rem;
+    }
+
+    .left-desc {
+        font-size: 1rem;
+    }
+
+    .process-indicator {
+        height: 100px;
+    }
+
+    .glass-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .glass-card p {
+        font-size: 0.95rem;
+    }
+
+    .tech-tags span {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .badge {
+        font-size: 9px;
+        padding: 3px 10px;
+    }
+}

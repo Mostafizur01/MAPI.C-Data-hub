@@ -17,8 +17,8 @@
             </div>
             <% } %>
                 <div class="events-list">
-                    <% if (events && events.length> 0) { %>
-                        <% events.forEach(function(event) { %>
+                    <% if (typeof events !== 'undefined' && events && events.length > 0) { %>
+                        <% events.forEach(event => { %>
                             <div class="event-card">
                                 <a href="/event/<%= event._id %>">
                                     <img src="<%= event.image %>" alt="<%= event.title %>" class="event-image">
